@@ -1,3 +1,2 @@
-data/renfe.csv filter=lfs diff=lfs merge=lfs -text
-data/renfe.parquet filter=lfs diff=lfs merge=lfs -text
-libs/postgresql-42.2.8.jar filter=lfs diff=lfs merge=lfs -text
+data/raw/renfe.parquet filter=lfs diff=lfs merge=lfs -text
+vm/ubuntu.ova filter=lfs diff=lfs merge=lfs -text

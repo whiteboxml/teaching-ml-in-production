@@ -1,2 +1,4 @@
 .ipynb_checkpoints
-credentials.py
+__pycache__
+output
+embedding.parquet
