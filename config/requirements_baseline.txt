@@ -1,0 +1,6 @@
+pandas
+pyarrow
+sklearn
+umap-learn
+matplotlib
+hdbscan
