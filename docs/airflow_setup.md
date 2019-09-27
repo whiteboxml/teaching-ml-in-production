@@ -272,19 +272,19 @@ process using psql cli:
 3. Execute the following query: `CREATE USER airflow WITH ENCRYPTED PASSWORD 'airflow';`
 4. Create airflow database: `CREATE DATABASE renfe;`
 5. Give permissions to airflow user in airflow database: `GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow`;
-6. Quit psql with `\ q`.
+6. Quit psql with `\q`.
 
 Once the database has been created, the Airflow backend must be modified in the config file, so that it
  start using this new database instead of the one used by default (SQLite).
 
-The config file is located in `~ / airflow / airflow.cfg`, around line 40 there is the option to specify the metadata 
+The config file is located in `~/airflow/airflow.cfg`, around line 40 there is the option to specify the metadata 
 database:
 
 ```ini
 # The SqlAlchemy connection string to the metadata database.
 # SqlAlchemy supports many different database engine, more information
 # their website
-sql_alchemy_conn = sqlite: //// home / <user> /airflow/airflow.db
+sql_alchemy_conn = sqlite:////home/<user>/airflow/airflow.db
 ```
 
 The SQLite database is currently configured, which is nothing more than a local file called airflow.db in the
@@ -346,3 +346,46 @@ It must match the number of processor cores. In this case, it will be set to 2.
 are read continuously (0 option). It will be set to 60 to read every minute.
 * `dagbag_import_timeout` (~ line 84): the time after which a timeout error is raised when reading the dags. Will be 
 fixed in 60.
+
+### Setup Airflow as a system service
+
+To setup Airflow as a service using systemd (__mandatory__ in production environments), create the following files in 
+`/etc/systemd/system/` path.
+
+* Scheduler
+
+    ```
+    [Unit]
+    Description=Airflow scheduler
+    After=network.target
+    
+    [Service]
+    Environment=AIRFLOW_HOME=/home/user/airflow
+    Restart=on-failure
+    RestartSec=30
+    StandardOutput=file:/var/log/airflow/scheduler/stdout.log
+    StandardError=file:/var/log/airflow/scheduler/stderr.log
+    ExecStart=/bin/bash -c 'PATH=/home/user/miniconda3/envs/airflow_env/bin/:$PATH exec airflow scheduler'
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+* Webserver
+
+    ```
+    [Unit]
+    Description=Airflow webserver
+    After=network.target
+    
+    [Service]
+    Environment=AIRFLOW_HOME=/home/user/airflow
+    Restart=on-failure
+    RestartSec=30
+    StandardOutput=file:/var/log/airflow/webserver/stdout.log
+    StandardError=file:/var/log/airflow/webserver/stderr.log
+    ExecStart=/bin/bash -c 'PATH=/home/user/miniconda3/envs/airflow_env/bin/:$PATH exec airflow webserver'
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
