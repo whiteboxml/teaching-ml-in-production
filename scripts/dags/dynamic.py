@@ -3,7 +3,7 @@ import airflow
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.email_operator import EmailOperator
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 # settings
 
@@ -14,7 +14,7 @@ N_LEVELS = 3
 N_TASKS = 4
 
 DEFAULT_ARGS = {
-    'owner': 'david.canones',
+    'owner': 'airflow',
     'start_date': airflow.utils.dates.days_ago(1),
     'email': MAIL_LIST,
     'email_on_failure': True,
@@ -42,6 +42,7 @@ def generate_levels(n_tasks, previous_level_tasks, level_start, n_levels):
                            previous_level_tasks=generated_tasks,
                            level_start=level_start + 1,
                            n_levels=n_levels - 1)
+
 
 # dag definition
 
