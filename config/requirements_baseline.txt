@@ -1,6 +1,6 @@
-pandas
-pyarrow
-sklearn
-umap-learn
-matplotlib
-hdbscan
+pandas==0.25.1
+pyarrow==0.14.1
+scikit-learn==0.21.3
+umap-learn==0.3.10
+matplotlib==3.1.1
+hdbscan==0.8.22

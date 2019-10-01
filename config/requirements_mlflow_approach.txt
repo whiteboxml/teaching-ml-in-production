@@ -1,1 +1,1 @@
-mlflow
+mlflow==1.2.0

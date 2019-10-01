@@ -76,11 +76,11 @@ Everything is now setup to run the Tracking Server. Then write the following
 command:
 
 ```bash
-mlflow server --backend-store-uri postgresql://mlflow:mlflow@localhost/mlflow --default-artifact-root file:/home/ubuntu/mlruns -h 192.168.5.184 -p 8000
+mlflow server --backend-store-uri postgresql://mlflow:mlflow@localhost/mlflow --default-artifact-root file:/home/your_user/mlruns -h 0.0.0.0 -p 8000
 ```
 
 Now the Tracking server should be available a the following URL: 
-http://192.168.5.184:8000. However, if you Ctrl-C or exit the terminal, the
+http://0.0.0.0:8000. However, if you Ctrl-C or exit the terminal, the
 server will go down.
 
 ## Production
@@ -99,9 +99,9 @@ After=network.target
 [Service]
 Restart=on-failure
 RestartSec=30
-StandardOutput=file:/var/log/mlflow/tracking/stdout.log
-StandardError=file:/var/log/mlflow/tracking/stderr.log
-ExecStart=/bin/bash -c 'PATH=/home/ubuntu/miniconda3/envs/mlflow_env/bin/:$PATH exec mlflow server --backend-store-uri postgresql://mlflow:mlflow@localhost/mlflow --default-artifact-root file:/home/ubuntu/mlruns -h 192.168.5.184 -p 8000'
+StandardOutput=file:/path_to_your_logging_folder/stdout.log
+StandardError=file:/path_to_your_logging_folder/stderr.log
+ExecStart=/bin/bash -c 'PATH=/path_to_your_conda_installation/envs/mlflow_env/bin/:$PATH exec mlflow server --backend-store-uri postgresql://mlflow:mlflow@localhost/mlflow --default-artifact-root file:/home/your_user/mlruns -h 0.0.0.0 -p 8000'
 
 [Install]
 WantedBy=multi-user.target
@@ -111,7 +111,7 @@ After that, you need to activate and enable the service with the following
 commands:
 
 ```bash
-sudo mkdir -p /var/log/mlflow/tracking
+sudo mkdir -p /path_to_your_logging_folder
 sudo systemctl daemon-reload
 sudo systemctl enable mlflow-tracking
 sudo systemctl start mlflow-tracking
@@ -132,12 +132,12 @@ You should see an output similar to this:
  Main PID: 10357 (mlflow)
     Tasks: 10 (limit: 4915)
    CGroup: /system.slice/mlflow-tracking.service
-           ├─10357 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/mlflow s
-           ├─10377 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
-           ├─10381 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
-           ├─10383 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
-           ├─10385 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
-           └─10386 /home/ubuntu/miniconda3/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
+           ├─10357 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/mlflow s
+           ├─10377 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
+           ├─10381 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
+           ├─10383 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
+           ├─10385 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
+           └─10386 /path_to_your_conda_installation/envs/mlflow_env/bin/python /home/ubuntu/miniconda3/envs/mlflow_env/bin/gunicorn
 
 Sep 27 09:02:11 ubuntu systemd[1]: Started MLFlow tracking server.
 ```
