@@ -271,7 +271,7 @@ process using psql cli:
 2. You will access psql, the command line application to manage Postgres on the computer: `psql`.
 3. Execute the following query: `CREATE USER airflow WITH ENCRYPTED PASSWORD 'airflow';`
 4. Create airflow database: `CREATE DATABASE airflow;`
-5. Give permissions to airflow user in airflow database: `GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow`;
+5. Give permissions to airflow user in airflow database: `GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow;`
 6. Quit psql with `\q`.
 
 Once the database has been created, the Airflow backend must be modified in the config file, so that it
