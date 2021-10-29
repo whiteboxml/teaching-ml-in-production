@@ -47,18 +47,18 @@ All examples will use our [dataset](https://www.kaggle.com/thegurusteam/spanish-
 about high speed train tickets in Spain. 
 The following use cases are covered here:
 
-Unsupervised learning - high speed train tickets clustering using the following algorithms:
-- Dimensionality reduction with UMAP
-- HDBSCAN clustering
-- Model to production using MLFlow so that the REST API returns a cluster ID for new tickets
+- Unsupervised learning - high speed train tickets clustering using the following algorithms:
+    * Dimensionality reduction with UMAP
+    * HDBSCAN clustering
+    * Model to production using MLFlow so that the REST API returns a cluster ID for new tickets
 
-Supervised learning - high speed train tickets forecasting using the following algorithms:
-- XGBoost implementation of AWS Sagemaker (both cloud training and model deployment)
-- scikit-learn Random Forest (local training and cloud deployment in AWS Sagemaker)
+- Supervised learning - high speed train tickets forecasting using the following algorithms:
+    * XGBoost implementation of AWS Sagemaker (both cloud training and model deployment)
+    * scikit-learn Random Forest (local training and cloud deployment in AWS Sagemaker)
   
-Model deployment:
-- Putting models to production in virtually any linux machine or server
-- Putting model to production in cloud with AWS SageMaker
+- Model deployment:
+    * Putting models to production in virtually any linux machine or server
+    * Putting model to production in cloud with AWS SageMaker
 
-Scheduling:
-- Orchestration of (batch) clustering and price forecasting for new data using Apache Airflow
+- Scheduling:
+    * Orchestration of (batch) clustering and price forecasting for new data using Apache Airflow
