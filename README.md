@@ -16,8 +16,6 @@ This is a practical workshop with the goals of learning the following concepts:
 
 In order to follow tutorials in a standard setup, there is a Linux VM included in this repository 
 with repository itself and conda preinstalled. Please download VirtualBox and import `vm/ubuntu.ova`.
-As this is a large file, you can download it from 
-[here](https://server-davidadrian.asuscomm.com:8969/index.php/s/FZSHQA8iyRgnG8d):
 
 VM login credentials are:
 
@@ -46,8 +44,7 @@ machine with [conda](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux
 ### Business Case
 
 All examples will use our [dataset](https://www.kaggle.com/thegurusteam/spanish-high-speed-rail-system-ticket-pricing) 
-about high speed train tickets in Spain. You can download the dataset from Kaggle or using this 
-[link](https://server-davidadrian.asuscomm.com:8969/index.php/s/FZSHQA8iyRgnG8d). 
+about high speed train tickets in Spain. 
 The following use cases are covered here:
 
 Unsupervised learning - high speed train tickets clustering using the following algorithms:
