@@ -60,7 +60,7 @@ notebook==6.0.1
 numpy==1.17.2
 pandas==0.25.1
 pandocfilters==1.4.2
-paramiko==2.6.0
+paramiko==2.10.1
 parso==0.5.1
 pexpect==4.7.0
 pickleshare==0.7.5
