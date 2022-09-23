@@ -66,7 +66,7 @@ pexpect==4.7.0
 pickleshare==0.7.5
 prometheus-client==0.7.1
 prompt-toolkit==2.0.9
-protobuf==3.9.2
+protobuf==3.18.3
 protobuf3-to-dict==0.1.5
 psycopg2-binary==2.8.3
 ptyprocess==0.6.0
